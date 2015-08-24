@@ -1,0 +1,17 @@
+<company>
+	<book>
+	    <title>Fun Software</title>
+	    <author>Jakob Jenkov</author>
+	    <ISBN>0123456789</ISBN>
+	</book>
+	<book>
+	    <title>W pustyni i w puszczy</title>
+	    <author>Sienkiewicz</author>
+	    <ISBN>789</ISBN>
+	</book>
+	<book>
+	    <title>Zaczarowany</title>
+	    <author>Kropiwnicki</author>
+	    <ISBN>6789</ISBN>
+	</book>
+</company>
