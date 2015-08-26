@@ -12,10 +12,10 @@ import jxl.read.biff.BiffException;
 
 public class ReadExelImpl implements ReadExel {
 	
-	private Map<String, String> mapPrice = new HashMap<String, String>();
+	private Map<Integer, String> mapPrice = new HashMap<Integer, String>();
 
 	@Override
-	public Map<String, String> readExel(String name) {
+	public Map<Integer, String> readExel(String name) {
 		
 		Workbook sk;
 		Sheet arkusz = null;
@@ -34,8 +34,8 @@ public class ReadExelImpl implements ReadExel {
 		for(int i = 0 ; i<3 ; i++){
 			Cell id = arkusz.getCell(0,i);
      		Cell price = arkusz.getCell(1,i);
-			
-			mapPrice.put(id.getContents(), price.getContents());
+			int idx = Integer.parseInt(id.getContents());
+			mapPrice.put(idx, price.getContents());
 			
 		}
 		return mapPrice;

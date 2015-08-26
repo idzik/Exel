@@ -1,9 +1,9 @@
 package exel.saveXml;
 
-import java.util.Map;
+import org.w3c.dom.Document;
 
 public interface SaveXml {
 	
-	void saveXml(String name, Map<String, String> mapPro);
+	void saveXml(String name, Document doc);
 
 }

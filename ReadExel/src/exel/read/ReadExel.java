@@ -4,5 +4,5 @@ import java.util.Map;
 
 public interface ReadExel {
 	
-	Map<String, String> readExel(String name);
+	Map<Integer, String> readExel(String name);
 }

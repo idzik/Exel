@@ -1,7 +1,6 @@
 package exel.readXml;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -9,16 +8,21 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import exel.saveXml.SaveXml;
+import exel.saveXml.SaveXmlImpl;
+
 public class ReadXmlImpl implements ReadXml {
-	
-	private Map<String, String> mapProduct = new HashMap<String, String>();
+
+	private SaveXml saveXml;
 
 	@Override
-	public Map<String, String> readXml(String file) {
-				
+	public void readXml(String file, Map<Integer, String> mapPrice) {
+		
+		saveXml = new SaveXmlImpl();		
 		try {
 			File fXmlFile = new File (file);
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -33,21 +37,30 @@ public class ReadXmlImpl implements ReadXml {
 			
 			for(int i = 0 ; i<nList.getLength() ; i++){
 				
+				
 				Node nod = nList.item(i);
+				NamedNodeMap model = nod.getAttributes();
+				Node price = model.getNamedItem("price");
+				
 				Element element = (Element) nod;	
-				mapProduct.put(element.getAttribute("idx"), element.getAttribute("price"));
+				Integer idx = Integer.parseInt(element.getAttribute("idx"));
+				
+				for(Integer key : mapPrice.keySet()){
+					if(idx.equals(key)){
+						price.setTextContent(mapPrice.get(key));
+					}
+				}
 				
 			}
 			
-			System.out.println(mapProduct.size());
+			saveXml.saveXml("test.xml", doc);
 			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return mapProduct;
+
 
 	}
 	

@@ -4,5 +4,5 @@ import java.util.Map;
 
 public interface ReadXml {
 
-	Map<String, String> readXml(String file);
+	void readXml(String file, Map<Integer, String> mapPrice);
 }
